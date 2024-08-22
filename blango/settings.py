@@ -153,6 +153,11 @@ class Dev(Configuration):
   LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+    },
     "formatters": {
         "verbose": {
             "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
@@ -161,7 +166,7 @@ class Dev(Configuration):
     },
     "handlers": {
         "console": {
-            "class": "logging.StreamHandler", 
+            "class": "logging.StreamHandler",
             "stream": "ext://sys.stdout",
             "formatter": "verbose",
         },
