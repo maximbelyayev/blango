@@ -51,6 +51,7 @@ class Dev(Configuration):
       
       'crispy_forms',
       'crispy_bootstrap5',
+      'debug_toolbar',
 
       'blog',
       
@@ -62,16 +63,21 @@ class Dev(Configuration):
   CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
   CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+  ## Django Debug Toolbar
+  INTERNAL_IPS = ["192.168.10.93"]
+
+
   # Middleware
 
   MIDDLEWARE = [
-      'django.middleware.security.SecurityMiddleware',
-      'django.contrib.sessions.middleware.SessionMiddleware',
-      'django.middleware.common.CommonMiddleware',
-      #'django.middleware.csrf.CsrfViewMiddleware',
-      'django.contrib.auth.middleware.AuthenticationMiddleware',
-      'django.contrib.messages.middleware.MessageMiddleware',
-      #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
   ]
 
   ROOT_URLCONF = 'blango.urls'
